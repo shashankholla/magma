@@ -32,10 +32,11 @@ class InstancePass(Pass):
             inst_defn = type(inst)
             inst_path = path + (inst, )
             self.instances.append(inst_path)
-            if callable(self):
-                self(inst_path)
+            
             if isdefinition(inst_defn):
                 self._run(inst_defn, inst_path)
+            if callable(self):
+                self(inst_path)
 
     def run(self):
         self._run(self.main, tuple())
